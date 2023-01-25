@@ -10,12 +10,32 @@ function App() {
       .then((response) => response.json())
       .then((data) => {
         const allBreedNames = Object.keys(data.message);
-        setBreeds(allBreedNames);
+        const selectedBreeds = [];
+
+        for (let i = 0; i < 10; i++) {
+          let index = Math.floor(Math.random() * allBreedNames.length);
+          let selectedBreed = allBreedNames[index];
+          fetch(`https://dog.ceo/api/breed/${selectedBreed}/images/random`)
+            .then((response) => response.json())
+            .then((data) => {
+              selectedBreeds.push({ name: selectedBreed, image: data.message });
+              setBreeds(selectedBreeds);
+            });
+        }
       });
-  });
+  }, []);
 
   const breedsDisplay = breeds.map((breed, index) => {
-    return <div key={index}>{breed}</div>;
+    return (
+      <div key={index} className="breed-container">
+        {breed.name}{" "}
+        <img
+          src={breed.image}
+          alt={`${breed.name}`}
+          style={{ width: "10rem", height: "10rem" }}
+        />
+      </div>
+    );
   });
 
   return (
