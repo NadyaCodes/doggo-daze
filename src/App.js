@@ -24,7 +24,6 @@ function App() {
             .then((response) => response.json())
             .then((data) => {
               selectedBreeds.push({ name: selectedBreed, image: data.message });
-              console.log(selectedBreeds);
             })
             .then(() => setBreeds(selectedBreeds));
         }
@@ -53,7 +52,11 @@ function App() {
 
   return (
     <div className="App">
-      {loading === true ? <div>Loading...</div> : <div>{breedsDisplay}</div>}
+      {loading === true ? (
+        <div>Loading...</div>
+      ) : (
+        <div className="breed-display-container">{breedsDisplay}</div>
+      )}
     </div>
   );
 }

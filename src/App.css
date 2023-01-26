@@ -1,6 +1,10 @@
-.App >div {
-  display: flex;
-  flex-wrap: wrap;
+.breed-display-container {
+  /* display: flex;
+  flex-wrap: wrap; */
+
+  display: grid;
+  grid-template-columns: repeat(3, 200px);
+
 }
 
 .breed-container {
