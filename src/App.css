@@ -25,6 +25,7 @@
   border: 2px solid rgb(195, 217, 217);
 }
 
+
 .dog-box {
   width: 10rem;
   height: 10rem;
@@ -33,4 +34,9 @@
   position: absolute;
   transform: translateY(-12.5rem);
   border: 2px solid transparent;
+}
+
+.dog-box:hover {
+  background-image: url("./images/dog-bone-background.jpeg");
+  background-size: contain;
 }
