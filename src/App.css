@@ -3,10 +3,6 @@
   flex-wrap: wrap;
 }
 
-.App > div > * {
-  flex: 1 1 80px;
-}
-
 .breed-container {
   display: flex;
   flex-direction: column;
