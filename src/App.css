@@ -45,8 +45,24 @@
   display: flex;
 }
 
+.breed-name-display-container {
+  display: flex;
+  flex-direction: column;
+  margin: auto;
+  /* width: 100%; */
+  /* justify-content: center; */
+  /* width: 100%; */
+
+  /* align-items: center; */
+  /* justify-content: center;
+  align-items: center; */
+  /* justify-self: center; */
+}
+
 .breed-name-text {
   padding: 1rem;
+  border: 1px solid blue;
+  margin: auto;
 }
 
 .breed-name-text:hover {

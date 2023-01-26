@@ -7,6 +7,7 @@ function App() {
   const tempBreeds = useRef([]);
   const [displayBreeds, setDisplayBreeds] = useState([]);
   const [loading, setLoading] = useState(true);
+  const [shuffledBreeds, setShuffledBreeds] = useState([]);
 
   useEffect(() => {
     fetch("https://dog.ceo/api/breeds/list/all")
@@ -38,7 +39,7 @@ function App() {
     }
   }, [breeds, displayBreeds]);
 
-  const breedsDisplay = displayBreeds.map((breed, index) => {
+  const breedsDisplay = breeds.map((breed, index) => {
     return (
       <div key={index} className="breed-container">
         {breed.name}{" "}
@@ -56,7 +57,7 @@ function App() {
     );
   });
 
-  const breedNames = displayBreeds.map((breed, index) => {
+  const breedNames = breeds.map((breed, index) => {
     return (
       <div key={index} className="breed-name-text">
         {breed.name}
