@@ -1,9 +1,6 @@
 .breed-display-container {
-  /* display: flex;
-  flex-wrap: wrap; */
-
   display: grid;
-  grid-template-columns: repeat(3, 200px);
+  grid-template-columns: repeat(4, 200px);
 
 }
 
@@ -12,4 +9,28 @@
   flex-direction: column;
   justify-content: center;
   align-items: center;
+}
+
+
+.breed-image-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.dog-bone-background {
+  width: 12rem;
+  height: 12rem;
+  opacity: .4;
+  border: 2px solid rgb(195, 217, 217);
+}
+
+.dog-box {
+  width: 10rem;
+  height: 10rem;
+  object-fit: contain;
+  padding: 1rem;
+  position: absolute;
+  transform: translateY(-12.5rem);
+  border: 2px solid transparent;
 }

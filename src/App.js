@@ -1,5 +1,6 @@
 import "./App.css";
 import { useEffect, useState, useRef } from "react";
+import dogBoneBackground from "./images/dog-bone-background.jpeg";
 
 function App() {
   const [breeds, setBreeds] = useState([]);
@@ -41,11 +42,16 @@ function App() {
     return (
       <div key={index} className="breed-container">
         {breed.name}{" "}
-        <img
-          src={breed.image}
-          alt={`${breed.name}`}
-          style={{ width: "10rem", height: "10rem" }}
-        />
+        <div className="breed-image-conainer">
+          <img
+            src={dogBoneBackground}
+            alt="dog bone background"
+            className="dog-bone-background"
+          ></img>
+          <div>
+            <img src={breed.image} alt={`${breed.name}`} className="dog-box" />
+          </div>
+        </div>
       </div>
     );
   });
