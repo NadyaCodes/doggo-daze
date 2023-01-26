@@ -56,12 +56,23 @@ function App() {
     );
   });
 
+  const breedNames = displayBreeds.map((breed, index) => {
+    return (
+      <div key={index} className="breed-name-text">
+        {breed.name}
+      </div>
+    );
+  });
+
   return (
     <div className="App">
       {loading === true ? (
         <div>Loading...</div>
       ) : (
-        <div className="breed-display-container">{breedsDisplay}</div>
+        <div className="game-display-container">
+          <div className="breed-display-container">{breedsDisplay}</div>
+          <div className="breed-name-display-container">{breedNames}</div>
+        </div>
       )}
     </div>
   );

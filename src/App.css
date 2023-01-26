@@ -40,3 +40,15 @@
   background-image: url("./images/dog-bone-background.jpeg");
   background-size: contain;
 }
+
+.game-display-container {
+  display: flex;
+}
+
+.breed-name-text {
+  padding: 1rem;
+}
+
+.breed-name-text:hover {
+  color: blue
+}
