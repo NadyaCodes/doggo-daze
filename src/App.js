@@ -39,6 +39,37 @@ function App() {
     }
   }, [breeds, displayBreeds]);
 
+  function shuffle(array) {
+    let range = array.length;
+
+    const newArray = [];
+
+    while (range >= 0) {
+      let randomIndex = Math.floor(Math.random() * range);
+      newArray.push(array[randomIndex]);
+      range--;
+    }
+
+    // let randomIndex;
+    // while (currentIndex != 0) {
+    //   randomIndex = Math.floor(Math.random() * currentIndex);
+    //   currentIndex--;
+
+    //   [array[currentIndex], array[randomIndex]] = [
+    //     array[randomIndex], array[currentIndex]];
+    // }
+
+    return newArray;
+  }
+
+  useEffect(() => {
+    if (breeds.length >= 12) {
+      let shuffled = shuffle(breeds);
+      setShuffledBreeds(shuffled);
+      // setLoading(false);
+    }
+  }, [breeds, displayBreeds]);
+
   const breedsDisplay = breeds.map((breed, index) => {
     return (
       <div key={index} className="breed-container">
@@ -57,7 +88,7 @@ function App() {
     );
   });
 
-  const breedNames = breeds.map((breed, index) => {
+  const breedNames = shuffledBreeds.map((breed, index) => {
     return (
       <div key={index} className="breed-name-text">
         {breed.name}
