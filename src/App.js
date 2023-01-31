@@ -8,6 +8,8 @@ function App() {
   const [displayBreeds, setDisplayBreeds] = useState([]);
   const [loading, setLoading] = useState(true);
   const [shuffledBreeds, setShuffledBreeds] = useState([]);
+  const [selectedBreed, setSelectedBreed] = useState("");
+  const [dog, setDog] = useState([]);
 
   useEffect(() => {
     fetch("https://dog.ceo/api/breeds/list/all")
@@ -50,20 +52,26 @@ function App() {
       range--;
     }
 
-    // let randomIndex;
-    // while (currentIndex != 0) {
-    //   randomIndex = Math.floor(Math.random() * currentIndex);
-    //   currentIndex--;
-
-    //   [array[currentIndex], array[randomIndex]] = [
-    //     array[randomIndex], array[currentIndex]];
-    // }
-
     return newArray;
   }
 
+  // const removeDoubles = (arr) => {
+  //   const tempArr = [...arr];
+  //   const cleanArray = [];
+  //   while (tempArr.length > 0) {
+  //     let i = tempArr.length - 1;
+  //     if (!cleanArray.includes(tempArr[i])) {
+  //       cleanArray.push(tempArr[i]);
+  //     }
+  //     tempArr.pop();
+  //   }
+  //   console.log(cleanArray);
+  //   return cleanArray;
+  // };
+
   useEffect(() => {
     if (breeds.length >= 12) {
+      // let cleanedBreeds = removeDoubles(breeds);
       let shuffled = shuffle(breeds);
       setShuffledBreeds(shuffled);
       // setLoading(false);
@@ -96,14 +104,41 @@ function App() {
     );
   });
 
+  useEffect(() => {
+    if (selectedBreed.length > 0) {
+      const pickedDog = breeds.filter((breed) => {
+        if (breed.name.includes(selectedBreed)) {
+          return breed;
+        } else {
+          return undefined;
+        }
+      });
+      if (pickedDog && pickedDog.length === 1) {
+        setDog(pickedDog);
+        console.log(pickedDog);
+      }
+    }
+  }, [selectedBreed, breeds]);
+
   return (
     <div className="App">
       {loading === true ? (
         <div>Loading...</div>
       ) : (
-        <div className="game-display-container">
-          <div className="breed-display-container">{breedsDisplay}</div>
-          <div className="breed-name-display-container">{breedNames}</div>
+        <div>
+          <input
+            type="text"
+            name="name"
+            value={selectedBreed}
+            onChange={(e) => setSelectedBreed(e.target.value)}
+          />
+          <div>
+            <div>{dog.length > 0 && dog[0].name}</div>
+          </div>
+          <div className="game-display-container">
+            <div className="breed-display-container">{breedsDisplay}</div>
+            <div className="breed-name-display-container">{breedNames}</div>
+          </div>
         </div>
       )}
     </div>
