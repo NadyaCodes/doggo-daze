@@ -8,8 +8,8 @@ function App() {
   const [displayBreeds, setDisplayBreeds] = useState([]);
   const [loading, setLoading] = useState(true);
   const [shuffledBreeds, setShuffledBreeds] = useState([]);
-  const [selectedBreed, setSelectedBreed] = useState("");
-  const [dog, setDog] = useState([]);
+  // const [selectedBreed, setSelectedBreed] = useState("");
+  // const [dog, setDog] = useState([]);
 
   useEffect(() => {
     fetch("https://dog.ceo/api/breeds/list/all")
@@ -104,21 +104,21 @@ function App() {
     );
   });
 
-  useEffect(() => {
-    if (selectedBreed.length > 0) {
-      const pickedDog = breeds.filter((breed) => {
-        if (breed.name.includes(selectedBreed)) {
-          return breed;
-        } else {
-          return undefined;
-        }
-      });
-      if (pickedDog && pickedDog.length === 1) {
-        setDog(pickedDog);
-        console.log(pickedDog);
-      }
-    }
-  }, [selectedBreed, breeds]);
+  // useEffect(() => {
+  //   if (selectedBreed.length > 0) {
+  //     const pickedDog = breeds.filter((breed) => {
+  //       if (breed.name.includes(selectedBreed)) {
+  //         return breed;
+  //       } else {
+  //         return undefined;
+  //       }
+  //     });
+  //     if (pickedDog && pickedDog.length === 1) {
+  //       setDog(pickedDog);
+  //       console.log(pickedDog);
+  //     }
+  //   }
+  // }, [selectedBreed, breeds]);
 
   return (
     <div className="App">
@@ -126,15 +126,6 @@ function App() {
         <div>Loading...</div>
       ) : (
         <div>
-          <input
-            type="text"
-            name="name"
-            value={selectedBreed}
-            onChange={(e) => setSelectedBreed(e.target.value)}
-          />
-          <div>
-            <div>{dog.length > 0 && dog[0].name}</div>
-          </div>
           <div className="game-display-container">
             <div className="breed-display-container">{breedsDisplay}</div>
             <div className="breed-name-display-container">{breedNames}</div>
