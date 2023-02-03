@@ -1,84 +1,73 @@
 import "./App.css";
-import { useEffect, useState, useRef } from "react";
+import { useEffect, useState } from "react";
 import dogBoneBackground from "./images/dog-bone-background.jpeg";
 
 function App() {
   const [breeds, setBreeds] = useState([]);
-  const tempBreeds = useRef([]);
   const [displayBreeds, setDisplayBreeds] = useState([]);
   const [loading, setLoading] = useState(true);
   const [shuffledBreeds, setShuffledBreeds] = useState([]);
-  // const [selectedBreed, setSelectedBreed] = useState("");
-  // const [dog, setDog] = useState([]);
+  const [selectedBreedNames, setSelectedBreedNames] = useState([]);
 
   useEffect(() => {
     fetch("https://dog.ceo/api/breeds/list/all")
       .then((response) => response.json())
       .then((data) => {
         const allBreedNames = Object.keys(data.message);
-        tempBreeds.current = allBreedNames;
-      })
-      .then(() => {
         const selectedBreeds = [];
-        for (let i = 0; i < 12; i++) {
-          let index = Math.floor(Math.random() * tempBreeds.current.length);
-          let selectedBreed = tempBreeds.current[index];
-
-          fetch(`https://dog.ceo/api/breed/${selectedBreed}/images/random`)
-            .then((response) => response.json())
-            .then((data) => {
-              selectedBreeds.push({ name: selectedBreed, image: data.message });
-            })
-            .then(() => setBreeds(selectedBreeds));
+        let numOfDogs = 1;
+        while (numOfDogs <= 12) {
+          numOfDogs++;
+          let index = Math.floor(Math.random() * allBreedNames.length);
+          let selectedBreed = allBreedNames[index];
+          selectedBreeds.push(selectedBreed);
         }
+        setSelectedBreedNames(selectedBreeds);
       });
   }, []);
 
   useEffect(() => {
-    if (breeds.length >= 12) {
+    if (selectedBreedNames.length === 12) {
+      selectedBreedNames.forEach((breedName) => {
+        fetch(`https://dog.ceo/api/breed/${breedName}/images/random`)
+          .then((response) => response.json())
+          .then((data) => {
+            let newBreed = { name: breedName, image: data.message };
+            setBreeds((prev) => [...prev, newBreed]);
+          });
+      });
+    }
+  }, [selectedBreedNames]);
+
+  useEffect(() => {
+    if (breeds.length === 12) {
       setDisplayBreeds(breeds);
       setLoading(false);
     }
-  }, [breeds, displayBreeds]);
+  }, [breeds]);
 
   function shuffle(array) {
-    let range = array.length;
+    let arrCopy = [...array];
 
     const newArray = [];
 
-    while (range >= 0) {
-      let randomIndex = Math.floor(Math.random() * range);
-      newArray.push(array[randomIndex]);
-      range--;
+    while (arrCopy.length > 0) {
+      let randomIndex = Math.floor(Math.random() * arrCopy.length);
+      newArray.push(arrCopy[randomIndex]);
+      arrCopy.splice(randomIndex, 1);
     }
 
     return newArray;
   }
 
-  // const removeDoubles = (arr) => {
-  //   const tempArr = [...arr];
-  //   const cleanArray = [];
-  //   while (tempArr.length > 0) {
-  //     let i = tempArr.length - 1;
-  //     if (!cleanArray.includes(tempArr[i])) {
-  //       cleanArray.push(tempArr[i]);
-  //     }
-  //     tempArr.pop();
-  //   }
-  //   console.log(cleanArray);
-  //   return cleanArray;
-  // };
-
   useEffect(() => {
-    if (breeds.length >= 12) {
-      // let cleanedBreeds = removeDoubles(breeds);
-      let shuffled = shuffle(breeds);
+    if (displayBreeds.length > 1) {
+      let shuffled = shuffle(displayBreeds);
       setShuffledBreeds(shuffled);
-      // setLoading(false);
     }
-  }, [breeds, displayBreeds]);
+  }, [displayBreeds]);
 
-  const breedsDisplay = breeds.map((breed, index) => {
+  const breedsDisplay = displayBreeds.map((breed, index) => {
     return (
       <div key={index} className="breed-container">
         {breed.name}{" "}
