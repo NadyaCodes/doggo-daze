@@ -68,3 +68,8 @@
 .breed-name-text:hover {
   color: blue
 }
+
+.featured {
+  border-color: red;
+  background-color: red;
+}

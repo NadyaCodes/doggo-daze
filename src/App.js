@@ -8,6 +8,7 @@ function App() {
   const [loading, setLoading] = useState(true);
   const [shuffledBreeds, setShuffledBreeds] = useState([]);
   const [selectedBreedNames, setSelectedBreedNames] = useState([]);
+  const [highlight, setHighlight] = useState({ boxBreed: "", listBreed: "" });
 
   useEffect(() => {
     fetch("https://dog.ceo/api/breeds/list/all")
@@ -67,9 +68,23 @@ function App() {
     }
   }, [displayBreeds]);
 
+  function highlightBreed(elementType, name) {
+    setHighlight((prev) => ({ ...prev, [elementType]: name }));
+    console.log(highlight);
+  }
+
   const breedsDisplay = displayBreeds.map((breed, index) => {
+    let isHighlighted = false;
+    if (highlight.boxBreed === breed.name) {
+      isHighlighted = true;
+    }
+    let itemClass = `breed-container ${isHighlighted === true && "featured"}`;
     return (
-      <div key={index} className="breed-container">
+      <div
+        key={index}
+        className={itemClass}
+        onClick={() => highlightBreed("boxBreed", breed.name)}
+      >
         {breed.name}{" "}
         <div className="breed-image-conainer">
           <img
@@ -86,28 +101,21 @@ function App() {
   });
 
   const breedNames = shuffledBreeds.map((breed, index) => {
+    let isHighlighted = false;
+    if (highlight.listBreed === breed.name) {
+      isHighlighted = true;
+    }
+    let breedClass = `breed-name-text ${isHighlighted === true && "featured"}`;
     return (
-      <div key={index} className="breed-name-text">
+      <div
+        key={index}
+        className={breedClass}
+        onClick={() => highlightBreed("listBreed", breed.name)}
+      >
         {breed.name}
       </div>
     );
   });
-
-  // useEffect(() => {
-  //   if (selectedBreed.length > 0) {
-  //     const pickedDog = breeds.filter((breed) => {
-  //       if (breed.name.includes(selectedBreed)) {
-  //         return breed;
-  //       } else {
-  //         return undefined;
-  //       }
-  //     });
-  //     if (pickedDog && pickedDog.length === 1) {
-  //       setDog(pickedDog);
-  //       console.log(pickedDog);
-  //     }
-  //   }
-  // }, [selectedBreed, breeds]);
 
   return (
     <div className="App">
