@@ -9,6 +9,7 @@ function App() {
   const [shuffledBreeds, setShuffledBreeds] = useState([]);
   const [selectedBreedNames, setSelectedBreedNames] = useState([]);
   const [highlight, setHighlight] = useState({ boxBreed: "", listBreed: "" });
+  const [matches, setMatches] = useState([]);
 
   useEffect(() => {
     fetch("https://dog.ceo/api/breeds/list/all")
@@ -73,6 +74,13 @@ function App() {
     console.log(highlight);
   }
 
+  useEffect(() => {
+    const { boxBreed, listBreed } = highlight;
+    if (boxBreed === listBreed && !matches.includes(boxBreed)) {
+      setMatches([...matches, boxBreed]);
+    }
+  }, [highlight, matches]);
+
   const breedsDisplay = displayBreeds.map((breed, index) => {
     let isHighlighted = false;
     if (highlight.boxBreed === breed.name) {
@@ -117,6 +125,10 @@ function App() {
     );
   });
 
+  const matchesDisplay = matches.map((breed) => {
+    return <div key={breed}>{breed}</div>;
+  });
+
   return (
     <div className="App">
       {loading === true ? (
@@ -127,6 +139,7 @@ function App() {
             <div className="breed-display-container">{breedsDisplay}</div>
             <div className="breed-name-display-container">{breedNames}</div>
           </div>
+          <div>{matchesDisplay}</div>
         </div>
       )}
     </div>
