@@ -19,10 +19,12 @@ function App() {
         const selectedBreeds = [];
         let numOfDogs = 1;
         while (numOfDogs <= 12) {
-          numOfDogs++;
           let index = Math.floor(Math.random() * allBreedNames.length);
           let selectedBreed = allBreedNames[index];
-          selectedBreeds.push(selectedBreed);
+          if (!selectedBreeds.includes(selectedBreed)) {
+            selectedBreeds.push(selectedBreed);
+            numOfDogs++;
+          }
         }
         setSelectedBreedNames(selectedBreeds);
       });
