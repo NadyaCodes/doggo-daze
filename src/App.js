@@ -73,7 +73,6 @@ function App() {
 
   function highlightBreed(elementType, name) {
     setHighlight((prev) => ({ ...prev, [elementType]: name }));
-    console.log(highlight);
   }
 
   useEffect(() => {
@@ -115,6 +114,7 @@ function App() {
     if (highlight.listBreed === breed.name) {
       isHighlighted = true;
     }
+
     let breedClass = `breed-name-text ${isHighlighted === true && "featured"}`;
     return (
       <div
@@ -130,6 +130,21 @@ function App() {
   const matchesDisplay = matches.map((breed) => {
     return <div key={breed}>{breed}</div>;
   });
+
+  useEffect(() => {
+    if (matches.length > 1) {
+      function checkName(breed) {
+        return breed.name === matches[matches.length - 1];
+      }
+      const breedIndex = displayBreeds.findIndex(checkName);
+      displayBreeds.splice(breedIndex, 1);
+      setDisplayBreeds(displayBreeds);
+      const shuffledBreedIndex = shuffledBreeds.findIndex(checkName);
+      shuffledBreeds.splice(shuffledBreedIndex, 1);
+      setShuffledBreeds(shuffledBreeds);
+      setHighlight({ boxBreed: "", listBreed: "" });
+    }
+  }, [matches, displayBreeds, shuffledBreeds]);
 
   return (
     <div className="App">
