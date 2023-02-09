@@ -67,6 +67,7 @@
 .breed-name-text {
   padding: 1rem;
   margin-left: 2rem;
+  text-transform: capitalize;
 }
 
 .breed-name-text:hover {
