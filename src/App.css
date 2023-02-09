@@ -43,26 +43,18 @@
 
 .game-display-container {
   display: flex;
+  justify-content: flex-start;
 }
 
 .breed-name-display-container {
   display: flex;
   flex-direction: column;
-  margin: auto;
-  /* width: 100%; */
-  /* justify-content: center; */
-  /* width: 100%; */
-
-  /* align-items: center; */
-  /* justify-content: center;
-  align-items: center; */
-  /* justify-self: center; */
+  align-items: flex-start;
 }
 
 .breed-name-text {
   padding: 1rem;
-  border: 1px solid blue;
-  margin: auto;
+  margin-left: 2rem;
 }
 
 .breed-name-text:hover {
