@@ -12,22 +12,12 @@
 
 .breed-display-container {
   display: grid;
-  grid-template-columns: repeat(4, 200px);
-
+  grid-template-columns: repeat(4, 220px);
 }
+
 
 .breed-container {
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  align-items: center;
-}
-
-
-.breed-image-container {
-  display: flex;
-  justify-content: center;
-  align-items: center;
+  margin-bottom: 1rem;
 }
 
 .dog-bone-background {
@@ -51,6 +41,7 @@
 .dog-box:hover {
   background-image: url("./images/dog-bone-background.jpeg");
   background-size: contain;
+
 }
 
 .game-display-container {
