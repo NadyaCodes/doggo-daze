@@ -1,6 +1,7 @@
 import "./App.css";
 import { useEffect, useState } from "react";
 import dogBoneBackground from "./images/dog-bone-background.jpeg";
+import singleBone from "./images/single-bone.jpeg";
 
 function App() {
   const [breeds, setBreeds] = useState([]);
@@ -127,17 +128,13 @@ function App() {
     );
   });
 
-  const matchesDisplay = matches.map((breed) => {
-    return <div key={breed}>{breed}</div>;
-  });
-
   useEffect(() => {
     if (matches.length > 1) {
       function checkName(breed) {
         return breed.name === matches[matches.length - 1];
       }
       const breedIndex = displayBreeds.findIndex(checkName);
-      displayBreeds.splice(breedIndex, 1);
+      displayBreeds[breedIndex].image = singleBone;
       setDisplayBreeds(displayBreeds);
       const shuffledBreedIndex = shuffledBreeds.findIndex(checkName);
       shuffledBreeds.splice(shuffledBreedIndex, 1);
@@ -156,7 +153,6 @@ function App() {
             <div className="breed-display-container">{breedsDisplay}</div>
             <div className="breed-name-display-container">{breedNames}</div>
           </div>
-          <div>{matchesDisplay}</div>
         </div>
       )}
     </div>
