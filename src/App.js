@@ -95,7 +95,6 @@ function App() {
         className={itemClass}
         onClick={() => highlightBreed("boxBreed", breed.name)}
       >
-        {breed.name}{" "}
         <div className="breed-image-conainer">
           <img
             src={dogBoneBackground}
