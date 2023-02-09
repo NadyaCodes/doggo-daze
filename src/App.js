@@ -149,6 +149,7 @@ function App() {
         <div>Loading...</div>
       ) : (
         <div>
+          <h1 className="title">Doggos</h1>
           <div className="game-display-container">
             <div className="breed-display-container">{breedsDisplay}</div>
             <div className="breed-name-display-container">{breedNames}</div>
