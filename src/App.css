@@ -41,24 +41,25 @@
 .dog-box:hover {
   background-image: url("./images/dog-bone-background.jpeg");
   background-size: contain;
-
+  cursor: pointer;
 }
 
 .game-display-container {
   display: flex;
-  justify-content: flex-start;
 }
 
 .breed-name-display-container {
   display: flex;
   flex-direction: column;
-  align-items: flex-start;
+  align-items: center;
 }
 
 .breed-name-text {
   padding: 1rem;
   margin-left: 2rem;
   text-transform: capitalize;
+  cursor: pointer;
+  border: 2px solid transparent;
 }
 
 .breed-name-text:hover {
@@ -66,6 +67,5 @@
 }
 
 .featured {
-  border-color: red;
-  background-color: red;
+  border: 2px solid red;
 }
