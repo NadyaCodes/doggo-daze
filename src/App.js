@@ -88,7 +88,10 @@ function App() {
     if (highlight.boxBreed === breed.name) {
       isHighlighted = true;
     }
-    let itemClass = `breed-container ${isHighlighted === true && "featured"}`;
+    let itemClass = `breed-container`;
+    let breedClass = `dog-bone-background  ${
+      isHighlighted === true && "featured"
+    }`;
     return (
       <div
         key={index}
@@ -99,7 +102,7 @@ function App() {
           <img
             src={dogBoneBackground}
             alt="dog bone background"
-            className="dog-bone-background"
+            className={breedClass}
           ></img>
           <div>
             <img src={breed.image} alt={`${breed.name}`} className="dog-box" />
