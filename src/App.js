@@ -11,6 +11,7 @@ function App() {
   const [selectedBreedNames, setSelectedBreedNames] = useState([]);
   const [highlight, setHighlight] = useState({ boxBreed: "", listBreed: "" });
   const [matches, setMatches] = useState([]);
+  const [done, setDone] = useState(false);
 
   useEffect(() => {
     fetch("https://dog.ceo/api/breeds/list/all")
@@ -145,13 +146,37 @@ function App() {
     }
   }, [matches, displayBreeds, shuffledBreeds]);
 
+  useEffect(() => {
+    if (loading === false) {
+      let allMatched = true;
+
+      displayBreeds.forEach((breed) => {
+        if (breed.image !== singleBone) {
+          allMatched = false;
+        }
+      });
+      if (allMatched === true) {
+        setDone(true);
+      }
+    }
+  }, [displayBreeds, loading]);
+
+  function refreshGame() {
+    window.location.reload(false);
+  }
+
   return (
     <div className="App">
+      <h1 className="title">Doggos</h1>
+      {done === true && (
+        <div>
+          DONE! <button onClick={() => refreshGame()}>Refresh</button>
+        </div>
+      )}
       {loading === true ? (
         <div>Loading...</div>
       ) : (
         <div>
-          <h1 className="title">Doggos</h1>
           <div className="game-display-container">
             <div className="breed-display-container">{breedsDisplay}</div>
             <div className="breed-name-display-container">{breedNames}</div>
