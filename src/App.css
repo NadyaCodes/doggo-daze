@@ -8,8 +8,12 @@
 }
 
 .title {
+  width: 100%;
   display: flex;
   justify-content: center;
+  background-color: rgb(195, 217, 217);
+  padding: 2rem;
+  margin-bottom: 2rem;
 }
 
 .breed-display-container {
