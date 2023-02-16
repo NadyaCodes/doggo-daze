@@ -148,18 +148,17 @@ function App() {
 
   useEffect(() => {
     if (loading === false) {
-      let allMatched = true;
-
-      displayBreeds.forEach((breed) => {
-        if (breed.image !== singleBone) {
-          allMatched = false;
-        }
-      });
+      let allMatched = false;
+      if (breedNames.length < 1) {
+        allMatched = true;
+      }
       if (allMatched === true) {
         setDone(true);
+      } else {
+        setDone(false);
       }
     }
-  }, [displayBreeds, loading]);
+  }, [breedNames, loading]);
 
   function refreshGame() {
     window.location.reload(false);
