@@ -10,7 +10,8 @@
 .title {
   width: 100%;
   display: flex;
-  justify-content: center;
+  justify-content: space-around;
+  align-items: center;
   background-color: rgb(195, 217, 217);
   padding: 2rem;
   margin-bottom: 2rem;
@@ -75,4 +76,15 @@
 
 .featured {
   border: 2px solid red;
+}
+
+.refresh {
+  border: 2px solid blue;
+  border-radius: .2rem;
+  padding: 1rem;
+}
+
+
+.refresh:hover {
+  box-shadow: 1px 5px 10px;
 }

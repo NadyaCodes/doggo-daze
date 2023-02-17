@@ -166,13 +166,21 @@ function App() {
 
   return (
     <div className="App">
-      <h1 className="title">Doggos</h1>
-      <button onClick={() => refreshGame()}>Refresh</button>
+      <div className="title">
+        <h1>Doggos</h1>
+        <div onClick={() => refreshGame()} className="refresh">
+          Refresh
+        </div>
+      </div>
       {done === true && (
         <div>
-          DONE! <button onClick={() => refreshGame()}>Refresh</button>
+          <h2>DONE!</h2>
+          <div onClick={() => refreshGame()} className="refresh">
+            Refresh
+          </div>
         </div>
       )}
+
       {loading === true ? (
         <div>Loading...</div>
       ) : (
