@@ -1,4 +1,7 @@
-
+:root {
+  --light-blue: RGB(200, 240, 255);
+  --med-blue: RGB(111, 217, 255);
+}
 
 .App {
   display: flex;
@@ -12,7 +15,7 @@
   display: flex;
   justify-content: space-around;
   align-items: center;
-  background-color: rgb(195, 217, 217);
+  background-color: var(--light-blue);
   padding: 2rem;
   margin-bottom: 2rem;
 }
@@ -71,7 +74,7 @@
 }
 
 .breed-name-text:hover {
-  color: blue
+  color:var(--med-blue);
 }
 
 .featured {
@@ -79,7 +82,7 @@
 }
 
 .refresh {
-  border: 2px solid blue;
+  border: 2px solid var(--med-blue);
   border-radius: .2rem;
   padding: 1rem;
 }
