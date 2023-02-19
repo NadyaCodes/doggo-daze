@@ -1,6 +1,7 @@
 :root {
   --light-blue: RGB(200, 240, 255);
   --med-blue: RGB(111, 217, 255);
+  --green: rgb(12, 132, 12);
 }
 
 .App {
@@ -78,7 +79,8 @@
 }
 
 .featured {
-  border: 2px solid red;
+  border: 2px solid var(--green) ;
+  box-shadow: 1px 5px 10px  var(--green);
 }
 
 .refresh {
