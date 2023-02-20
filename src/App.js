@@ -167,7 +167,7 @@ function App() {
   return (
     <div className="App">
       <div className="title">
-        <h1>Doggos</h1>
+        <h1>Which doggo is which?</h1>
         <div onClick={() => refreshGame()} className="refresh">
           Refresh
         </div>
