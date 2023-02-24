@@ -172,23 +172,27 @@ function App() {
           Refresh
         </div>
       </div>
-      {done === true && (
-        <div>
-          <h2>DONE!</h2>
-          <div onClick={() => refreshGame()} className="refresh">
-            Refresh
-          </div>
-        </div>
-      )}
 
       {loading === true ? (
         <div>Loading...</div>
       ) : (
         <div>
-          <div className="game-display-container">
-            <div className="breed-display-container">{breedsDisplay}</div>
-            <div className="breed-name-display-container">{breedNames}</div>
-          </div>
+          {done === true ? (
+            <div className="winning-cube">
+              <h2>DONE!</h2>
+
+              <div onClick={() => refreshGame()} className="refresh">
+                &#8594; &nbsp; Refresh &nbsp; &#8592;
+              </div>
+            </div>
+          ) : (
+            <div>
+              <div className="game-display-container">
+                <div className="breed-display-container">{breedsDisplay}</div>
+                <div className="breed-name-display-container">{breedNames}</div>
+              </div>
+            </div>
+          )}
         </div>
       )}
     </div>
