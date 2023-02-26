@@ -92,4 +92,14 @@
 
 .refresh:hover {
   box-shadow: 1px 5px 10px;
+  cursor: pointer;
+}
+
+
+.winning-cube {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  background-color: var(--med-blue);
+  padding: 1rem 25vw 1rem 25vw;
 }
