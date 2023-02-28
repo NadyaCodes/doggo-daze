@@ -53,6 +53,7 @@
   background-image: url("./images/dog-bone-background.jpeg");
   background-size: contain;
   cursor: pointer;
+  border-color: var(--green);
 }
 
 .game-display-container {
