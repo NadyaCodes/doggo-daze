@@ -182,7 +182,7 @@ function App() {
               <h2>DONE!</h2>
 
               <div onClick={() => refreshGame()} className="refresh">
-                &#8594; &nbsp; Refresh &nbsp; &#8592;
+                &#8594; &nbsp; Play Again &nbsp; &#8592;
               </div>
             </div>
           ) : (
